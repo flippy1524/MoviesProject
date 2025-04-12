@@ -67,10 +67,21 @@ struct ContentView: View {
 }
 
 class ContentViewModel:ObservableObject {
-    @Service var moviesService: MoviesService?
+    @Service var manager: ContentManager?
+    @Query private var items: [Item]
 
     func printMovies() {
-        moviesService?.printapi()
+        
+        
+        Task {
+            do {
+                let movies = try await manager?.getMovies(for: .popular, page: 1)
+                print(movies)
+            } catch {
+                print("error", error.localizedDescription)
+            }
+       
+        }
     }
 }
 

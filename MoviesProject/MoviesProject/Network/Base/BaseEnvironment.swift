@@ -5,17 +5,14 @@
 //  Created by Ivan Velkov on 11.4.25.
 //
 
-
-
+import Foundation
 
 enum BaseEnvironment {
     static var baseURL: String {
-        #if PRODUCTION
-        return "https://api.themoviedb.org/"
-        #elseif DEBUG
-        return "https://api.themoviedb.org/3"
-        #else
-        return "https://localhost/"
-        #endif
+        return Bundle.main.object(forInfoDictionaryKey: "BASE_URL") as? String ?? "https://localhost/"
+    }
+    
+    static var accessToken: String {
+        return Bundle.main.object(forInfoDictionaryKey: "ACCESS_TOKEN") as? String ?? ""
     }
 }

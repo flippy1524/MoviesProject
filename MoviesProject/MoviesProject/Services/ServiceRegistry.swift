@@ -14,7 +14,7 @@ public struct ServiceRegistry {
     private init() {}
     
     public static func registerServices() {
-        let moviesService = MoviesService(api: AlamofireAPIClient())
-        ServiceContainer.register(MoviesService.self, with: moviesService)
+        let moviesManager = ContentManager(service: ContentService(api: URLSessionClient()))
+        ServiceContainer.register(ContentManager.self, with: moviesManager)
     }
 }
