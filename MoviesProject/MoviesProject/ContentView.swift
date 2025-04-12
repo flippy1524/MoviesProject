@@ -11,7 +11,9 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-
+    
+    @ObservedObject var viewModel = ContentViewModel()
+    
     var body: some View {
         NavigationSplitView {
             List {
@@ -41,6 +43,9 @@ struct ContentView: View {
             }
         } detail: {
             Text("Select an item")
+            
+        }.onAppear {
+            viewModel.printMovies()
         }
     }
 
@@ -49,6 +54,7 @@ struct ContentView: View {
             let newItem = Item(timestamp: Date())
             modelContext.insert(newItem)
         }
+
     }
 
     private func deleteItems(offsets: IndexSet) {
@@ -57,6 +63,14 @@ struct ContentView: View {
                 modelContext.delete(items[index])
             }
         }
+    }
+}
+
+class ContentViewModel:ObservableObject {
+    @Service var moviesService: MoviesService?
+
+    func printMovies() {
+        moviesService?.printapi()
     }
 }
 
