@@ -1,0 +1,65 @@
+# Xcode
+###############################
+# User-specific files
+###############################
+# User-specific data in Xcode
+*.xcuserstate
+
+# User-specific configuration files
+xcuserdata/
+
+# Temporary files
+*.swp
+*.swo
+
+###############################
+# Build
+###############################
+# Build products
+build/
+DerivedData/
+
+###############################
+# Pods
+###############################
+# CocoaPods
+Pods/
+
+###############################
+# Carthage
+###############################
+# Carthage
+Carthage/Build/
+
+###############################
+# Swift Package Manager
+###############################
+# Swift Package Manager
+/.build/
+.swiftpm/
+
+###############################
+# Xcode specific
+###############################
+# Xcode specific directories and files
+.idea/
+*.xcodeproj/*
+*.xcodeworkspace/*
+xcuserdata/
+
+###############################
+# Archive files
+###############################
+# Archives
+*.xcarchive
+*.ipa
+
+###############################
+# App-specific
+###############################
+# Ignore app logs
+*.log
+*.DS_Store
+
+# App-specific local configuration
+*.env
