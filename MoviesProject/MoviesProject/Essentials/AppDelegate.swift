@@ -13,6 +13,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         ServiceRegistry.registerServices()
+        ThemeManager.shared.set(appTarget: .app2)
         return true
     }
 }

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4B8C22CC2DAC09DE001D208E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4B8C22CB2DAC09DE001D208E /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4B8C21C92DA97E10001D208E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B8C22CC2DAC09DE001D208E /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +138,7 @@
 			);
 			name = MoviesProject;
 			packageProductDependencies = (
+				4B8C22CB2DAC09DE001D208E /* Kingfisher */,
 			);
 			productName = MoviesProject;
 			productReference = 4B8C21B52DA97E0F001D208E /* MoviesProject.app */;
@@ -217,6 +223,7 @@
 			mainGroup = 4B8C21AC2DA97E0F001D208E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				4B8C22CA2DAC09B6001D208E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4B8C21B62DA97E0F001D208E /* Products */;
@@ -946,6 +953,25 @@
 			defaultConfigurationName = DebugStaging;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4B8C22CA2DAC09B6001D208E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B8C22CB2DAC09DE001D208E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B8C22CA2DAC09B6001D208E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B8C21AD2DA97E0F001D208E /* Project object */;
 }

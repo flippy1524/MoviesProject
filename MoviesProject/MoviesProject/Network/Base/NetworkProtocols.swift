@@ -15,7 +15,7 @@ protocol APIClient {
         parameters: [String: Any]?,
         queryItems: [URLQueryItem]?
     ) async throws -> T
-    
+        
     var baseURL: String { get }
     var decoder: JSONDecoder { get }
 }
@@ -30,4 +30,12 @@ protocol NetworkService {
 
 enum HTTPMethod: String {
     case get = "GET"
+}
+
+protocol HasQueryItem {
+    func queryItem(_ key: String, value: String) -> URLQueryItem
+}
+
+protocol HasPageQueryItem: HasQueryItem {
+    func pageQueryItem(_ page: Int) -> URLQueryItem
 }

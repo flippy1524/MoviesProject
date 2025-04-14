@@ -1,16 +1,16 @@
 //
-//  MovieListResponse.swift
+//  ContentResponse.swift
 //  MoviesProject
 //
 //  Created by Ivan Velkov on 12.4.25.
 //
 
 
-struct MovieCategoryList: Decodable {
+struct ContentResponse: Decodable {
     let page: Int
-    let results: [Movie]
-    let totalPages: Int
-    let totalResults: Int
+    let results: [MPContent]
+    let totalPages: Int?
+    let totalResults: Int?
 
     enum CodingKeys: String, CodingKey {
         case page

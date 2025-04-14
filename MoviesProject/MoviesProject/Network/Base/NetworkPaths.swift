@@ -15,5 +15,10 @@ public struct NetworkPaths {
             static var topRated =   "3/movie/top_rated"
             static var upcoming =   "3/movie/upcoming"
         }
+        
+        enum Search {
+            static var movie =      "3/search/movie"
+            static var tv =         "3/search/tv"
+        }
     }
 }
