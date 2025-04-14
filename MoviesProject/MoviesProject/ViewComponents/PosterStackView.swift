@@ -11,16 +11,19 @@ import SwiftUI
 
 struct PosterStackView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @State private var isVisible = false
     
     let title: String?
     let contentList: [MPContent]
     let onPosterPressClosure: ((MPContent) -> Void)?
     let loadNextClosure: FunctionClosure?
     let cardSpacing: CGFloat = 16
+    let animationDuration: CGFloat
     
-    init(title: String? = nil, contentList: [MPContent], onPosterPressClosure: ((MPContent) -> Void)?, loadNextClosure: FunctionClosure?) {
+    init(title: String? = nil, contentList: [MPContent], animationDuration: CGFloat = 0.8, onPosterPressClosure: ((MPContent) -> Void)?, loadNextClosure: FunctionClosure?) {
         self.title = title
         self.contentList = contentList
+        self.animationDuration = animationDuration
         self.onPosterPressClosure = onPosterPressClosure
         self.loadNextClosure = loadNextClosure
     }
@@ -41,25 +44,36 @@ struct PosterStackView: View {
                                 onPosterPressClosure?(content)
                             }))
                             .onAppear {
-                                guard isLastContent(content.id) else {
+                                guard isLastElement(content.id) else {
                                     return
                                 }
                                 loadNextClosure?()
                             }
-                            .padding(.trailing, isLastContent(content.id) ? .medium : .zero)
+                            .padding(.trailing, isLastElement(content.id) ? .medium : .zero)
+                            .padding(.leading, isFirstElement(content.id) ? .medium : .zero)
                         }
                     }
-                }.padding(.leading, .medium)
-            }.padding(.vertical, .medium)
+                }
+            }
+            .padding(.vertical, .medium)
+        }
+        .opacity(isVisible ? 1 : 0)
+        .offset(y: isVisible ? 0 : 20)
+        .animation(.easeIn(duration: animationDuration), value: isVisible)
+        .onAppear {
+            isVisible = true
         }
         .background(Color(.surface))
         .cornerRadius(.extraExtraLarge)
         .padding(.horizontal, .medium)
-
     }
     
-    func isLastContent(_ id: Int) -> Bool {
+    func isLastElement(_ id: Int) -> Bool {
         return id == contentList.last?.id
+    }
+    
+    func isFirstElement(_ id: Int) -> Bool {
+        return id == contentList.first?.id
     }
 }
 

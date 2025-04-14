@@ -28,11 +28,16 @@ class HomeContent {
         return currentPage < totalPages
     }
     
- 
-    
     func updateContent(page: Int, newContent: [MPContent], pages: Int?) {
         currentPage = page
-        contentList.append(contentsOf: newContent)
+        insertContentWithoutDuplicates(newContent)
         totalPages = pages
+    }
+    
+    private func insertContentWithoutDuplicates(_ newContent: [MPContent]) {
+        var currentList = contentList
+        currentList.append(contentsOf: newContent)
+        var seenIDs = Set<Int>()
+        contentList = currentList.reversed().filter { seenIDs.insert($0.id).inserted }.reversed()
     }
 }

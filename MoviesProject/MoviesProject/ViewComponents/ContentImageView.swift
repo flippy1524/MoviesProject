@@ -21,6 +21,7 @@
  - Logic in functions can be improved to allow better testability
  - View model can be separated in its own file, if enforcing it by some rule
  - Kingfisher somewhat breaks the #Preview logic if its during the "Live preview" mode, would have to be investigated
+ - I prefer NOT using "scaleToFill" but i saw that some images are not with the correct scaling, so i adjusted the logic based on that
  */
 import SwiftUI
 import Kingfisher
@@ -36,22 +37,28 @@ struct ContentImageView: View {
     
     var body: some View {
         ZStack {
+            if !isLoaded {
+                Rectangle()
+                    .tint(Color(.primary))
+                    .frame(size: viewModel.size)
+                if !viewModel.hasImage {
+                    Text(Localized.Default.noImage)
+                        .textStyle(type: .body, color: Color(.onPrimary))
+                        .padding(.horizontal, .extraExtraSmall)
+                }
+            }
             if !isLoaded, let url = viewModel.scaledURL {
                 KFImage(url)
                     .cacheOriginalImage()
-                    .placeholder({
-                        //TODO: create something interesting for the background, maybe based on the type
-                        Rectangle().fill(Color.gray)
-                            .frame(size: viewModel.size)
-                    })
                     .onSuccess({ image in
                         withAnimation(.easeIn) {
                             isScaledLoaded = true
                         }
                     })
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
                     .hidden(if: !isScaledLoaded)
+                    .frame(size: viewModel.size)
             }
             
             if let url = viewModel.finalURL {
@@ -63,38 +70,45 @@ struct ContentImageView: View {
                         }
                     })
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
                     .hidden(if: !isLoaded)
+                    .frame(size: viewModel.size)
+
             }
         }
         .cornerRadius(viewModel.cornerRadius)
-        .frame(size: viewModel.size)
     }
 }
 
 class CustomImageViewModel: ObservableObject {
     
-    fileprivate let path: String
+    fileprivate let path: String?
     fileprivate let type: ImageType
     let size: CGSize
     fileprivate let baseURL = "https://image.tmdb.org/t/p/"
     fileprivate var scaleFactor: CGFloat = 3
 
-    init(path: String, type: ImageType, size: CGSize) {
+    init(path: String?, type: ImageType, size: CGSize) {
         self.path = path
         self.type = type
         self.size = size
     }
     
+    var hasImage: Bool {
+        path != nil
+    }
+    
     var scaledURL: URL? {
+        guard let path = path else { return nil }
         let imageSize = sizeSegment(for: size.width / scaleFactor, in: type.sizes)
         guard imageSize != "original" else { return nil }
-        let string = baseURL + imageSize + path
+        let string = compileUrl(with: size.width, path: path)
         return URL(string: string)
     }
     
     var finalURL: URL? {
-        let string = compileUrl(with: size.width)
+        guard let path = path else { return nil }
+        let string = compileUrl(with: size.width, path: path)
         return URL(string: string)
     }
     
@@ -102,7 +116,7 @@ class CustomImageViewModel: ObservableObject {
         return type.cornerRadius
     }
     
-    fileprivate func compileUrl(with width: CGFloat) -> String {
+    fileprivate func compileUrl(with width: CGFloat, path: String) -> String {
         let imageSize = sizeSegment(for: width, in: type.sizes)
         return baseURL + imageSize + path
     }

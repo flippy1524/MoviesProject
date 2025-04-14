@@ -30,9 +30,7 @@ struct PosterCardView: View {
                         .multilineTextAlignment(.leading)
                 }
                 
-                if let posterPath = viewModel.posterPath {
-                    ContentImageView(viewModel: .init(path: posterPath, type: .poster, size: viewModel.imageSize))
-                }
+                ContentImageView(viewModel: .init(path: viewModel.posterPath, type: .poster, size: viewModel.imageSize))
                 
                 if let overview = viewModel.overview {
                     Text(overview)

@@ -31,13 +31,13 @@ enum MovieCategory: CaseIterable, RelationshipCollection {
     var title: String {
         switch self {
         case .nowPlaying:
-            "Now Playing"
+            Localized.Category.nowPlaying
         case .popular:
-            "Popular"
+            Localized.Category.popular
         case .topRated:
-            "Top Rated"
+            Localized.Category.topRated
         case .upcoming:
-            "Upcoming"
+            Localized.Category.upcoming
         }
     }
 }
