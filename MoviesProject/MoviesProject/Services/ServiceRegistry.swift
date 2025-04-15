@@ -18,7 +18,6 @@ public struct ServiceRegistry {
             MPContent.self,
             TVDetails.self,
             MovieDetails.self,
-            HomeContent.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

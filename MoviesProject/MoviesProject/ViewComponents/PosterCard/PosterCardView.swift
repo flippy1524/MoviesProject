@@ -32,7 +32,7 @@ struct PosterCardView: View {
                 
                 ContentImageView(viewModel: .init(path: viewModel.posterPath, type: .poster, size: viewModel.imageSize))
                 
-                if let overview = viewModel.overview {
+                if viewModel.showSubtitle, let overview = viewModel.overview {
                     Text(overview)
                         .textStyle(type: .body2, lines: 2, staticHeight: true, staticHeightAlignment: .top)
                         .multilineTextAlignment(.leading)
@@ -47,11 +47,13 @@ class PosterCardViewModel: ObservableObject {
     private let data: PosterCardData
     var onPress: FunctionClosure?
     let cardSpacing: CGFloat
+    let showSubtitle: Bool
     @Published var imageSize: CGSize = .init(width: 200, height: 300)
     
-    init(data: PosterCardData, cardSpacing: CGFloat = 16, onPress: FunctionClosure? = nil) {
+    init(data: PosterCardData, cardSpacing: CGFloat = 16, showSubtitle: Bool = true, onPress: FunctionClosure? = nil) {
         self.data = data
         self.cardSpacing = cardSpacing
+        self.showSubtitle = showSubtitle
         self.onPress = onPress
         calculateSize()
     }

@@ -21,8 +21,7 @@ struct HomeView: View {
                     }
                 }
             }
-
-        }
+        }.padding(.vertical, .medium)
         .background(Color(.background))
         .task {
             viewModel.handle(.fetchCategories)

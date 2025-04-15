@@ -20,6 +20,8 @@ public enum Localized {
     
     public enum Search {
         public static var title: String { return "search.title".localized() }
+        public static var placeholder: String { return "search.placeholder".localized() }
+        public static var noResults: String { return "search.noResults".localized() }
     }
     
     public enum Settings {
@@ -28,5 +30,10 @@ public enum Localized {
     
     public enum Default {
         public static var noImage: String { return "default.noImage".localized() }
+    }
+    
+    public enum Content {
+        public static var movies: String { return "content.movies".localized() }
+        public static var tv: String { return "content.tv".localized() }
     }
 }

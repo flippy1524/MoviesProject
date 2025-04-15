@@ -16,6 +16,10 @@ extension View {
         self.frame(width: size.width, height: size.height)
     }
     
+    func frame(size: CGFloat) -> some View {
+        self.frame(width: size, height: size)
+    }
+    
     @ViewBuilder
     func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
         if condition {

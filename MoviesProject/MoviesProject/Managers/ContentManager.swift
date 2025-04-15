@@ -33,7 +33,7 @@ class ContentManager {
         return HomeContent(category: category, currentPage: response.page, contentList: response.results, totalPages: response.totalPages)
     }
     
-    private func getMovies(for category: MovieCategory, page: Int = 1) async throws -> ContentResponse {
+    private func getMovies(for category: MovieCategory, page: Int) async throws -> ContentResponse {
         return try await service.fetchMovies(for: category, page: page)
     }
 }

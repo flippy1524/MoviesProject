@@ -1,30 +1,23 @@
-//  HomeContent
 //
-//  Created by Ivan Velkov on 12.4.25.
+//  BaseContent.swift
+//  MoviesProject
+//
+//  Created by Ivan Velkov on 14.4.25.
 //
 
-import SwiftData
-
-@Model
-class HomeContent {
-    var category: MovieCategory
+class BaseContent: BaseContentProtocol {
     var currentPage: Int
     var contentList: [MPContent]
     var totalPages: Int?
     
-    init(category: MovieCategory, currentPage: Int, contentList: [MPContent], totalPages: Int? = nil) {
-        self.category = category
+    init(currentPage: Int, contentList: [MPContent], totalPages: Int? = nil) {
         self.currentPage = currentPage
         self.contentList = contentList
         self.totalPages = totalPages
     }
     
-    var title : String {
-        category.title
-    }
-    
     var canFetchNextPage : Bool {
-        guard let totalPages else { return false }
+        guard !contentList.isEmpty, let totalPages else { return false }
         return currentPage < totalPages
     }
     
@@ -34,10 +27,19 @@ class HomeContent {
         totalPages = pages
     }
     
-    private func insertContentWithoutDuplicates(_ newContent: [MPContent]) {
+    func insertContentWithoutDuplicates(_ newContent: [MPContent]) {
         var currentList = contentList
         currentList.append(contentsOf: newContent)
         var seenIDs = Set<Int>()
         contentList = currentList.reversed().filter { seenIDs.insert($0.id).inserted }.reversed()
     }
+}
+
+protocol BaseContentProtocol {
+    var currentPage: Int { get }
+    var contentList: [MPContent] { get }
+    var totalPages: Int? { get }
+    var canFetchNextPage: Bool { get }
+    func updateContent(page: Int, newContent: [MPContent], pages: Int?)
+    func insertContentWithoutDuplicates(_ newContent: [MPContent])
 }

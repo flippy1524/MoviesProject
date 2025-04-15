@@ -7,9 +7,7 @@
 
 import SwiftData
 
-enum MovieCategory: CaseIterable, RelationshipCollection {
-    typealias PersistentElement = HomeContent
-
+enum MovieCategory: CaseIterable {
     case nowPlaying
     case popular
     case topRated
@@ -42,7 +40,7 @@ enum MovieCategory: CaseIterable, RelationshipCollection {
     }
 }
 
-enum ContentType {
+enum ContentType: CaseIterable {
     case movie
     case tv
     
@@ -52,6 +50,15 @@ enum ContentType {
             NetworkPaths.V3.Search.movie
         case .tv:
             NetworkPaths.V3.Search.tv
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .movie:
+            Localized.Content.movies
+        case .tv:
+            Localized.Content.tv
         }
     }
 }

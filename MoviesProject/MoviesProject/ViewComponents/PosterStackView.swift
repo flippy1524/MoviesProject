@@ -15,15 +15,17 @@ struct PosterStackView: View {
     
     let title: String?
     let contentList: [MPContent]
+    let animationDuration: CGFloat
+    let showCardSubtitle: Bool
     let onPosterPressClosure: ((MPContent) -> Void)?
     let loadNextClosure: FunctionClosure?
     let cardSpacing: CGFloat = 16
-    let animationDuration: CGFloat
-    
-    init(title: String? = nil, contentList: [MPContent], animationDuration: CGFloat = 0.8, onPosterPressClosure: ((MPContent) -> Void)?, loadNextClosure: FunctionClosure?) {
+
+    init(title: String? = nil, contentList: [MPContent], animationDuration: CGFloat = 0.8, showCardSubtitle: Bool = true, onPosterPressClosure: ((MPContent) -> Void)?, loadNextClosure: FunctionClosure?) {
         self.title = title
         self.contentList = contentList
         self.animationDuration = animationDuration
+        self.showCardSubtitle = showCardSubtitle
         self.onPosterPressClosure = onPosterPressClosure
         self.loadNextClosure = loadNextClosure
     }
@@ -40,7 +42,7 @@ struct PosterStackView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(alignment: .center, spacing: cardSpacing) {
                         ForEach(contentList, id: \.id) { content in
-                            PosterCardView(viewModel: .init(data: content.posterData, cardSpacing: cardSpacing, onPress: {
+                            PosterCardView(viewModel: .init(data: content.posterData, cardSpacing: cardSpacing, showSubtitle: showCardSubtitle, onPress: {
                                 onPosterPressClosure?(content)
                             }))
                             .onAppear {

@@ -16,7 +16,7 @@ public struct PreviewData {
     }
     enum Content {
         public static var movieContent: MPContent {
-            return .init(id: Int.random(in: 1..<10000), title: "Fight club \(Int.random(in: 1..<100))", posterPath: PreviewData.Poster.posterPath, backdropPath: PreviewData.Poster.backdropPath, overview: PreviewData.Poster.overview)
+            return .init(id: Int.random(in: 1..<10000), title: "Fight club \(Int.random(in: 1..<100))", name: "Fight-u clobbu", posterPath: PreviewData.Poster.posterPath, backdropPath: PreviewData.Poster.backdropPath, overview: PreviewData.Poster.overview)
         }
     }
 }

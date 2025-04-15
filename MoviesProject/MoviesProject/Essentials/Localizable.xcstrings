@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "category.nowPlaying" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -45,6 +48,28 @@
         }
       }
     },
+    "content.movies" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Movies"
+          }
+        }
+      }
+    },
+    "content.tv" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Series"
+          }
+        }
+      }
+    },
     "default.noImage" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -56,9 +81,6 @@
         }
       }
     },
-    "Hello, World!" : {
-
-    },
     "home.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -66,6 +88,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Home"
+          }
+        }
+      }
+    },
+    "search.noResults" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No results… Try something else"
+          }
+        }
+      }
+    },
+    "search.placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type your search here.."
           }
         }
       }

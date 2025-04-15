@@ -1,5 +1,5 @@
 //
-//  GeometryUtils.swift
+//  Utils+Geometry.swift
 //  MoviesProject
 //
 //  Created by Ivan Velkov on 14.4.25.
@@ -16,19 +16,21 @@ func sizeForWidth(_ width: CGFloat, aspectRatio: CGFloat) -> CGSize {
 }
 
 func posterCardWidth(with spacing: CGFloat) -> CGFloat {
-    let screen = UIScreen.main.bounds
-    let isIphone = UIDevice.current.userInterfaceIdiom == .phone
-    let isLandscape = screen.width > screen.height
     
     let viewsPerScreen: CGFloat
-    switch (isIphone, isLandscape) {
-    case (true, true): viewsPerScreen = 4.2     // iPhone landscape
+    switch (isIphone, isDeviceInLandscape) {
+    case (true, true): viewsPerScreen = 6.2     // iPhone landscape
     case (true, false): viewsPerScreen = 2.2    // iPhone portrait
     case (false, true): viewsPerScreen = 8.2    // iPad landscape
     case (false, false): viewsPerScreen = 5.2   // iPad portrait
     }
-
+    
     let totalSpacing = spacing * (viewsPerScreen - 1)
-    let availableWidth = screen.width - totalSpacing - (spacing * 4)
+    let availableWidth = UIScreen.main.bounds.width - totalSpacing - (spacing * 4)
     return availableWidth / viewsPerScreen
+}
+
+var isDeviceInLandscape: Bool {
+    let screen = UIScreen.main.bounds
+    return screen.width > screen.height
 }

@@ -55,8 +55,7 @@ extension HomeViewModel {
         
         Task {
             do {
-                if let newContent = try await manager?.getHomeContent(for: homeContent.category, page: homeContent.currentPage + 1) {
-                    DispatchQueue.main.async {
+                if let newContent = try await manager?.getHomeContent(for: homeContent.category, page: homeContent.currentPage + 1) {                    DispatchQueue.main.async {
                         homeContent.updateContent(page: newContent.currentPage, newContent: newContent.contentList, pages: newContent.totalPages)
                     }
                 }
