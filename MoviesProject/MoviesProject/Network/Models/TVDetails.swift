@@ -11,26 +11,26 @@ import SwiftData
 @Model
 class TVDetails: Decodable {
     @Attribute(.unique) var id: Int
-    var title: String
+    var name: String
 
     enum CodingKeys: String, CodingKey {
         case id
-        case title = "title"
+        case name
     }
 
     init(
         id: Int,
-        title: String
+        name: String
     ) {
         self.id = id
-        self.title = title
+        self.name = name
     }
 
     required convenience init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(
             id: try container.decode(Int.self, forKey: .id),
-            title: try container.decode(String.self, forKey: .title)
+            name: try container.decode(String.self, forKey: .name)
         )
     }
 }

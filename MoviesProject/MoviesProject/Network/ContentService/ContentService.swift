@@ -29,6 +29,20 @@ extension ContentService {
         ]
         return try await api.dataRequest(type.searchPath, method: .get, queryItems: items)
     }
+    
+    func fetchGenres(for type: ContentType) async throws -> GenresResponse {
+        return try await api.dataRequest(type.genrePath, method: .get)
+    }
+    
+    func fetchMovieDetails(for id: Int) async throws -> MovieDetails {
+        let path = NetworkPaths.V3.Details.movie(id: id)
+        return try await api.dataRequest(path, method: .get)
+    }
+    
+    func fetchTVDetails(for id: Int) async throws -> TVDetails {
+        let path = NetworkPaths.V3.Details.tv(id: id)
+        return try await api.dataRequest(path, method: .get)
+    }
 }
 
 //MARK: Private methods

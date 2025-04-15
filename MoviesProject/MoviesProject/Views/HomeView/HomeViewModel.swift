@@ -13,8 +13,11 @@ class HomeViewModel: ObservableObject {
     
     @Published var homeContentList: [HomeContent] = []
     @Published var hasFetched = false
-    
-    
+}
+
+//MARK: Public methods
+
+extension HomeViewModel {
     func handle(_ action: HomeModel.Action) {
         switch action {
         case .fetchCategories:
@@ -22,18 +25,28 @@ class HomeViewModel: ObservableObject {
         case .fetchNextPage(let homeContent):
             fetchNextPage(for: homeContent)
         case .showDetails(movie: let movie):
-            print("tapped on:", movie.title)
-            // do something here
-            break
+            showDetails(for: movie)
         }
     }
 }
 
-
 //MARK: Private methods
 extension HomeViewModel {
+    private func showDetails(for movie: MPContent) {
+        Task {
+            do {
+                let movie = try await manager?.getMovieDetails(for: 12)
+                print(movie?.title)
+                
+                let tv = try await manager?.getTVDetails(for: 33)
+                print(tv?.name)
+            } catch {
+                
+            }
+        }
+    }
+    
     private func fetchCategories() {
-        
         guard !hasFetched else { return }
         
         Task {

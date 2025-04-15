@@ -20,5 +20,20 @@ public struct NetworkPaths {
             static var movie =      "3/search/movie"
             static var tv =         "3/search/tv"
         }
+        
+        enum Genres {
+            static var movie =       "3/genre/movie/list"
+            static var tv =          "3/genre/tv/list"
+        }
+        
+        enum Details {
+            static func movie(id: Int) -> String {
+                return "3/movie/\(id)"
+            }
+            
+            static func tv(id: Int) -> String {
+                return "3/tv/\(id)"
+            }
+        }
     }
 }

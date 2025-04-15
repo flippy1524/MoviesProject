@@ -53,6 +53,15 @@ enum ContentType: CaseIterable {
         }
     }
     
+    var genrePath: String {
+        switch self {
+        case .movie:
+            NetworkPaths.V3.Genres.movie
+        case .tv:
+            NetworkPaths.V3.Genres.tv
+        }
+    }
+    
     var title: String {
         switch self {
         case .movie:

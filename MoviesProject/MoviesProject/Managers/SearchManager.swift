@@ -21,7 +21,6 @@ class SearchManager {
     
     func getSearchContent(for type: ContentType, with query: String, page: Int = 1) async throws -> SearchContent {
         let response = try await getSearchResults(for: type, with: query, page: page)
-        //TODO: incorporate caching here cache the data here or return the cached data if the endpoint fails
         return SearchContent(type: type, currentPage: response.page, contentList: response.results, totalPages: response.totalPages)
     }
     

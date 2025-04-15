@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct ContentView: View {    
     var body: some View {
         TabView {
             Tab {
@@ -28,7 +28,8 @@ struct ContentView: View {
             } label: {
                 TabLabel(systemImage: "gear", text: Localized.Settings.title)
             }
-        }.tint(Color(.primary))
+        }
+        .tint(Color(.primary))
     }
 }
 

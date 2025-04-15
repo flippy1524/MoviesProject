@@ -12,6 +12,7 @@ class SearchViewModel: ObservableObject {
     @Service var manager: SearchManager?
     
     @Published var contentTypes = ContentType.allCases
+    @Published var searchContent: SearchContent?
     @Published var selectedType: ContentType = .movie {
         didSet {
             handle(.changedType)
@@ -22,13 +23,12 @@ class SearchViewModel: ObservableObject {
             handle(.search)
         }
     }
-    @Published var searchContent: SearchContent?
     var timer: Foundation.Timer?
-    
-    var canSearch: Bool {
-        return !searchText.trimmingCharacters(in: .whitespaces).isEmpty
-    }
-    
+}
+
+//MARK: Public methods
+
+extension SearchViewModel {
     func handle(_ action: SearchModel.Action) {
         switch action {
         case .search:
@@ -36,10 +36,43 @@ class SearchViewModel: ObservableObject {
         case .fetchNextPage:
             fetchNextPage()
         case .showDetails(let content):
-            print(content.title)
+            showDetails(for: content)
         case .changedType:
             handle(.search)
         }
+    }
+}
+
+//MARK: Computed variables
+
+extension SearchViewModel {
+    var canSearch: Bool {
+        return !searchText.trimmingCharacters(in: .whitespaces).isEmpty
+    }
+    
+    var title: String? {
+        guard let list = searchContent?.contentList, list.isEmpty else {
+            return nil
+        }
+        
+        return Localized.Search.noResults
+    }
+    
+    var contentList: [MPContent] {
+        return searchContent?.contentList ?? []
+    }
+    
+    var showContent: Bool {
+        return !contentList.isEmpty || title != nil
+    }
+}
+
+//MARK: Private methods
+
+extension SearchViewModel {
+    private func invalidateTimer() {
+        timer?.invalidate()
+        timer = nil
     }
     
     private func scheduleSearch() {
@@ -53,7 +86,6 @@ class SearchViewModel: ObservableObject {
                 self?.searchContent = nil
                 return
             }
-
             self.performSearch(with: query)
         })
     }
@@ -71,11 +103,6 @@ class SearchViewModel: ObservableObject {
                 
             }
         }
-    }
-    
-    private func invalidateTimer() {
-        timer?.invalidate()
-        timer = nil
     }
     
     private func fetchNextPage() {
@@ -96,19 +123,7 @@ class SearchViewModel: ObservableObject {
         }
     }
     
-    var title: String? {
-        guard let list = searchContent?.contentList, list.isEmpty else {
-            return nil
-        }
-        
-        return Localized.Search.noResults
-    }
-    
-    var contentList: [MPContent] {
-        return searchContent?.contentList ?? []
-    }
-    
-    var showContent: Bool {
-        return !contentList.isEmpty || title != nil
+    private func showDetails(for content: MPContent) {
+        let type = selectedType
     }
 }
