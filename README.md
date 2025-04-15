@@ -3,6 +3,11 @@ A basic example of a Netflix equivalent project using themoviedb's database
 https://developer.themoviedb.org/docs/getting-started
 
 # Core features
+- Home page with different categories to browse
+- Search page with selectable search types
+- Details page for displaying selected content
+
+# Technical features
 - Different environments based on scheme selection
 - Securely kept urls, tokens etc in info.plist
 - Natively written networking
