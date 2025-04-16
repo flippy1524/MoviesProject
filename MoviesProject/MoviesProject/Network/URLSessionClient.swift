@@ -44,8 +44,8 @@ extension URLSessionClient {
         do {
             let url = try generateURL(with: path, queryItems: queryItems)
             let request = generateRequest(with: url, method: method, parameters: parameters)
-            let (data, response) = try await URLSession.shared.data(for: request)
-
+            let (data, response) = try await session.data(for: request)
+            
             guard let httpResponse = response as? HTTPURLResponse,
                   200..<300 ~= httpResponse.statusCode else {
                 print("🔌 Data request \(method.rawValue) \(url.absoluteString) ❌ bad status")
