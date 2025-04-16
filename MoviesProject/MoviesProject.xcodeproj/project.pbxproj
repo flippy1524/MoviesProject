@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B8C22CC2DAC09DE001D208E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4B8C22CB2DAC09DE001D208E /* Kingfisher */; };
+		4B8C23B12DAFF6AD001D208E /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C23B02DAFF6AD001D208E /* swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		4B8C21B52DA97E0F001D208E /* MoviesProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B8C21C82DA97E10001D208E /* MoviesProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B8C21D22DA97E10001D208E /* MoviesProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B8C23B02DAFF6AD001D208E /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -93,6 +95,7 @@
 		4B8C21AC2DA97E0F001D208E = {
 			isa = PBXGroup;
 			children = (
+				4B8C23B02DAFF6AD001D208E /* swiftlint.yml */,
 				4B8C21B72DA97E0F001D208E /* MoviesProject */,
 				4B8C21CB2DA97E10001D208E /* MoviesProjectTests */,
 				4B8C21D52DA97E10001D208E /* MoviesProjectUITests */,
@@ -126,6 +129,7 @@
 			buildConfigurationList = 4B8C21DC2DA97E10001D208E /* Build configuration list for PBXNativeTarget "MoviesProject" */;
 			buildPhases = (
 				4B8C21B12DA97E0F001D208E /* Sources */,
+				4B8C23AF2DAFF64E001D208E /* SwiftLint */,
 				4B8C21B22DA97E0F001D208E /* Frameworks */,
 				4B8C21B32DA97E0F001D208E /* Resources */,
 			);
@@ -224,6 +228,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				4B8C22CA2DAC09B6001D208E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				4B8C23AE2DAFF639001D208E /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4B8C21B62DA97E0F001D208E /* Products */;
@@ -242,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B8C23B12DAFF6AD001D208E /* swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +266,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B8C23AF2DAFF64E001D208E /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$TEMP_DIR/swiftlint,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint --config \"${SRCROOT}/.swiftlint.yml\" > \"$TEMP_DIR/swiftlint.log\"\nelse\n  echo \"⚠️ SwiftLint not installed. Download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4B8C21B12DA97E0F001D208E /* Sources */ = {
@@ -973,6 +1002,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 8.3.2;
+			};
+		};
+		4B8C23AE2DAFF639001D208E /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.59.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

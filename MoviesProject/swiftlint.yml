@@ -1,0 +1,34 @@
+# Example .swiftlint.yml file
+
+included:
+  - MoviesProject
+
+excluded:
+  - Pods
+  - Carthage
+  - fastlane
+
+opt_in_rules:
+  - empty_count
+  - unused_declaration
+
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  - line_length
+
+line_length: 120
+type_name:
+  min_length: 3
+  max_length: 40
+identifier_name:
+  excluded:
+    - id
+    - url
+custom_rules:
+  no_force_try:
+    included: ".*\\.swift"
+    name: "No force try"
+    regex: "try!"
+    message: "Avoid using `try!`"
+    severity: warning
