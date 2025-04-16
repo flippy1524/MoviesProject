@@ -13,4 +13,9 @@ public extension String {
     func localized() -> String {
         NSLocalizedString(self, comment: "")
     }
+    
+    func localized(with arguments: CVarArg...) -> String {
+        let stringArgs = arguments.map { String(describing: $0) } as [CVarArg]
+        return String(format: self.localized(), arguments: stringArgs)
+    }
 }

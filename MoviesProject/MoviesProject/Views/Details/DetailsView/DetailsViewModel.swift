@@ -41,6 +41,10 @@ extension DetailsViewModel {
     var overview: String? {
         return contentData.overview
     }
+    
+    var favoriteTitle: String {
+        Localized.Details.addToFavorites
+    }
 }
 
 //MARK: Private methods
@@ -92,7 +96,7 @@ extension DetailsViewModel {
         if let title = details.name ?? self.contentData.title {
             var released: String? = nil
             if let date = details.firstAirDate, let formattedDate = date.formattedToDotDate {
-                released = "First aired: \(formattedDate)"
+                released = Localized.Details.firstAired(formattedDate)
             }
             let genres = details.formattedGenres
             let tagline = details.tagline
@@ -104,11 +108,11 @@ extension DetailsViewModel {
         }
         
         if let num = details.numberOfSeasons {
-            newLabels.append(.init(content: "Seasons: \(num)", textStyle: .body, multilineAlignment: .leading))
+            newLabels.append(.init(content: Localized.Details.numberOfSeasons(num), textStyle: .body, multilineAlignment: .leading))
         }
         
         if let num = details.numberOfEpisodes {
-            newLabels.append(.init(content: "Episodes: \(num)", textStyle: .body, multilineAlignment: .leading))
+            newLabels.append(.init(content: Localized.Details.numberOfEpisodes(num), textStyle: .body, multilineAlignment: .leading))
         }
         
         display(header: header, details: newLabels)

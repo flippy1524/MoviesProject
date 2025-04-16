@@ -34,13 +34,14 @@ extension String {
 func formatMinutesToHoursAndMinutes(_ minutes: Int) -> String {
     let hours = minutes / 60
     let remainingMinutes = minutes % 60
-    
+    let hString = Localized.Default.hour
+    let mString = Localized.Default.minute
     switch (hours, remainingMinutes) {
     case (0, let m):
-        return "\(m) min"
+        return "\(m) \(mString)"
     case (let h, 0):
-        return "\(h) h"
+        return "\(h) \(hString)"
     default:
-        return "\(hours) h \(remainingMinutes) min"
+        return "\(hours) \(hString) \(remainingMinutes) \(mString)"
     }
 }

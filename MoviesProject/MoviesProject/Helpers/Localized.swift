@@ -30,10 +30,27 @@ public enum Localized {
     
     public enum Default {
         public static var noImage: String { return "default.noImage".localized() }
+        public static var hour: String { return "default.hour".localized() }
+        public static var minute: String { return "default.minute".localized() }
     }
     
     public enum Content {
         public static var movies: String { return "content.movies".localized() }
         public static var tv: String { return "content.tv".localized() }
+    }
+    
+    public enum Details {
+        public static var addToFavorites: String { return "details.addToFavorites".localized() }
+        public static var removeFromFavorites: String { return "details.removeFromFavorites".localized() }
+        public static var startWatching: String { return "details.startWatching".localized() }
+        public static func firstAired(_ arguments: CVarArg...) -> String {
+            "details.firstAired".localized(with: arguments)
+        }
+        public static func numberOfEpisodes(_ arguments: CVarArg...) -> String {
+            "details.numberOfEpisodes".localized(with: arguments)
+        }
+        public static func numberOfSeasons(_ arguments: CVarArg...) -> String {
+            "details.numberOfSeasons".localized(with: arguments)
+        }
     }
 }

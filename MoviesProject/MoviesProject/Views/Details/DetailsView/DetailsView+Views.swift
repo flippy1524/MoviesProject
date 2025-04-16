@@ -117,11 +117,11 @@ extension DetailsView {
         HStack {
             if viewModel.showActions {
                 
-                MPButton(title: "Add to favorites", style: .primary, size: .small) {
+                MPButton(title: viewModel.favoriteTitle, style: .primary, size: .small) {
                     print("add to favorites")
                     
                 }.fixedSize()
-                MPButton(title: "Start watching", style: .primary, size: .small) {
+                MPButton(title: Localized.Details.startWatching, style: .primary, size: .small) {
                     print("start watching")
                 }.fixedSize()
             }
