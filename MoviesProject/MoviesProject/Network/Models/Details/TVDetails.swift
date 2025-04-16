@@ -48,9 +48,4 @@ class TVDetails: BaseDetails {
             numberOfSeasons: try container.decodeIfPresent(Int.self, forKey: .numberOfSeasons)
         )
     }
-    
-    var formattedAirDate: String? {
-        guard let date = firstAirDate else { return nil }
-        return "First aired: \(date)"
-    }
 }

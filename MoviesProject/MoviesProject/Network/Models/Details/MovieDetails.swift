@@ -36,9 +36,4 @@ class MovieDetails: BaseDetails {
             tagline: try container.decodeIfPresent(String.self, forKey: .tagline)
         )
     }
-    
-    var formattedRuntime: String? {
-        guard let runtime = runtime else { return nil }
-        return formatMinutesToHoursAndMinutes(runtime)
-    }
 }
