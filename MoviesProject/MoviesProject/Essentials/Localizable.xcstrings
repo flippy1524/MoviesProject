@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "Base url: %@" : {
+
+    },
     "category.nowPlaying" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -48,6 +51,17 @@
         }
       }
     },
+    "content.favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        }
+      }
+    },
     "content.movies" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -69,6 +83,9 @@
           }
         }
       }
+    },
+    "Current scheme: %@" : {
+
     },
     "default.hour" : {
       "extractionState" : "manual",
@@ -212,6 +229,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search"
+          }
+        }
+      }
+    },
+    "settings.appearanceDark" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        }
+      }
+    },
+    "settings.appearanceLight" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        }
+      }
+    },
+    "settings.appearanceSystem" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
           }
         }
       }

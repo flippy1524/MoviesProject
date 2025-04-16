@@ -8,5 +8,7 @@
 	<string>$(API_KEY)</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
+	<key>SCHEME_NAME</key>
+	<string>$(SCHEME_NAME)</string>
 </dict>
 </plist>

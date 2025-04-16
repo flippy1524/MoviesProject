@@ -26,6 +26,9 @@ public enum Localized {
     
     public enum Settings {
         public static var title: String { return "settings.title".localized() }
+        public static var appearanceSystem: String { return "settings.appearanceSystem".localized() }
+        public static var appearanceLight: String { return "settings.appearanceLight".localized() }
+        public static var appearanceDark: String { return "settings.appearanceDark".localized() }
     }
     
     public enum Default {
@@ -37,6 +40,7 @@ public enum Localized {
     public enum Content {
         public static var movies: String { return "content.movies".localized() }
         public static var tv: String { return "content.tv".localized() }
+        public static var favorites: String { return "content.favorites".localized() }
     }
     
     public enum Details {
