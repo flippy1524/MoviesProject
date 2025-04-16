@@ -5,8 +5,6 @@
 //  Created by Ivan Velkov on 12.4.25.
 //
 
-import SwiftData
-
 enum MovieCategory: CaseIterable {
     case nowPlaying
     case popular

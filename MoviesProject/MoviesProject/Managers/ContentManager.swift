@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 
 protocol ContentManagerProtocol {
     func getAllCategories() async throws -> [HomeContent]

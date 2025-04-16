@@ -5,11 +5,9 @@
 //  Created by Ivan Velkov on 12.4.25.
 //
 
-import SwiftData
 
-@Model
 class MPContent: Decodable {
-    @Attribute(.unique) var id: Int
+    var id: Int
     var title: String?
     var name: String?
     var posterPath: String?

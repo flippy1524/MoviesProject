@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 
 protocol SearchManagerProtocol {
     func getSearchContent(for type: ContentType, with query: String, page: Int) async throws -> SearchContent
