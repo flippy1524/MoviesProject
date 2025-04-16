@@ -1,3 +1,12 @@
+//
+//  FavoritesModel.swift
+//  MoviesProject
+//
+//  Created by Ivan Velkov on 16.4.25.
+//
+
+import Foundation
+
 enum FavoritesModel {
     enum Action {
         case fetchFavorites

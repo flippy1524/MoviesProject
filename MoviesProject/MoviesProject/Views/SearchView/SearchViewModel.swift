@@ -70,13 +70,13 @@ extension SearchViewModel {
 
 //MARK: Private methods
 
-extension SearchViewModel {
-    private func invalidateTimer() {
+private extension SearchViewModel {
+    func invalidateTimer() {
         timer?.invalidate()
         timer = nil
     }
     
-    private func scheduleSearch() {
+    func scheduleSearch() {
         let query = searchText
         invalidateTimer()
         timer = Timer.scheduledTimer(withTimeInterval: 1.0,
@@ -91,7 +91,7 @@ extension SearchViewModel {
         })
     }
     
-    private func performSearch(with query: String) {
+    func performSearch(with query: String) {
         Task {
             do {
                 if let searchContent = try await manager?.getSearchContent(for: selectedType, with: query) {
@@ -107,7 +107,7 @@ extension SearchViewModel {
         }
     }
     
-    private func fetchNextPage() {
+    func fetchNextPage() {
         guard let searchContent = searchContent, searchContent.canFetchNextPage, canSearch else { return }
         
         invalidateTimer()
@@ -125,7 +125,7 @@ extension SearchViewModel {
         }
     }
     
-    private func showDetails(for content: MPContent) {
+    func showDetails(for content: MPContent) {
         let type = selectedType
         selectedContent = content.contentDetailsData(for: type)
     }

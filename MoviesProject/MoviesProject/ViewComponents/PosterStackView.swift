@@ -35,7 +35,7 @@ struct PosterStackView: View {
             VStack(alignment: .leading, spacing: 4) {
                 if let title = title {
                     Text(title)
-                        .textStyle(type: .headline)
+                        .textStyle(type: .title3)
                         .padding(.horizontal, .medium)
                 }
                 

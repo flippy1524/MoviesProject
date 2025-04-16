@@ -31,12 +31,12 @@ extension HomeViewModel: HomeViewModelProtocol {
 }
 
 //MARK: Private methods
-extension HomeViewModel {
-    private func showDetails(for movie: MPContent) {
+private extension HomeViewModel {
+    func showDetails(for movie: MPContent) {
         selectedMovie = movie.contentDetailsData(for: .movie)
     }
     
-    private func fetchCategories() {
+    func fetchCategories() {
         guard !hasFetched else { return }
         
         Task {
@@ -53,7 +53,7 @@ extension HomeViewModel {
         }
     }
     
-    private func fetchNextPage(for homeContent: HomeContent) {
+    func fetchNextPage(for homeContent: HomeContent) {
         guard homeContent.canFetchNextPage else { return }
         
         Task {

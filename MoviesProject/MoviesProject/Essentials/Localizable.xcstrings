@@ -126,7 +126,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add to favorites"
+            "value" : "Add favorite"
           }
         }
       }
@@ -170,7 +170,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remove from favorites"
+            "value" : "Remove favorite"
           }
         }
       }
@@ -182,6 +182,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Start watching"
+          }
+        }
+      }
+    },
+    "favorites.noFavorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You haven’t added any favorites yet"
+          }
+        }
+      }
+    },
+    "favorites.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
           }
         }
       }

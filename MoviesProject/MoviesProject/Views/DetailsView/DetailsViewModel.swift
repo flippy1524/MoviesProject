@@ -30,7 +30,7 @@ extension DetailsViewModel: DetailsViewModelProtocol {
         switch action {
         case .fetchData:
             fetchContent()
-        case .addToFavorites:
+        case .toggleFavorite:
             updateFavorite(!isFavorite)
         case .startWatching:
             break
@@ -47,18 +47,16 @@ extension DetailsViewModel: DetailsViewModelProtocol {
     
     var favoriteTitle: String {
         switch isFavorite {
-        case true:
-            Localized.Details.removeFromFavorites
-        case false:
-            Localized.Details.addToFavorites
+        case true: return Localized.Details.removeFromFavorites
+        case false: return Localized.Details.addToFavorites
         }
     }
 }
 
 //MARK: Private methods
 
-extension DetailsViewModel {
-    private func fetchContent() {
+private extension DetailsViewModel {
+    func fetchContent() {
         Task {
             do {
                 switch contentData.type {
@@ -77,7 +75,7 @@ extension DetailsViewModel {
         }
     }
     
-    private func populateMovie(with details: MovieDetails) {
+    func populateMovie(with details: MovieDetails) {
         var newLabels: [DetailsLabel] = []
         var header: HeaderData? = nil
         
@@ -96,7 +94,7 @@ extension DetailsViewModel {
         display(header: header, details: newLabels)
     }
     
-    private func populateTV(with details: TVDetails) {
+    func populateTV(with details: TVDetails) {
         var newLabels: [DetailsLabel] = []
         var header: HeaderData? = nil
         
@@ -125,7 +123,7 @@ extension DetailsViewModel {
         display(header: header, details: newLabels)
     }
     
-    private func display(header: HeaderData?, details: [DetailsLabel]) {
+    func display(header: HeaderData?, details: [DetailsLabel]) {
         DispatchQueue.main.async {
             withAnimation(.easeIn(duration: 0.8)) {
                 self.isFavorite = self.cachedIsFavorite
@@ -136,7 +134,7 @@ extension DetailsViewModel {
         }
     }
     
-    private func updateFavorite(_ bool: Bool) {
+    func updateFavorite(_ bool: Bool) {
         switch bool {
         case true:
             cacheManager?.setFavorite(contentData)
@@ -147,7 +145,7 @@ extension DetailsViewModel {
         isFavorite = cachedIsFavorite
     }
     
-    private var cachedIsFavorite: Bool {
+    var cachedIsFavorite: Bool {
         return cacheManager?.getFavorite(for: contentData.id, type: contentData.type) != nil
     }
 }

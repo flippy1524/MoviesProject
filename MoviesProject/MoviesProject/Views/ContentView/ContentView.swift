@@ -16,7 +16,13 @@ struct ContentView: View {
                 TabLabel(systemImage: "house", text: Localized.Home.title)
             }
             
-            Tab(role: .search) {
+            Tab {
+                FavoritesView()
+            } label: {
+                TabLabel(systemImage: "heart", text: Localized.Favorites.title)
+            }
+            
+            Tab {
                 SearchView()
             } label: {
                 TabLabel(systemImage: "magnifyingglass", text: Localized.Search.title)

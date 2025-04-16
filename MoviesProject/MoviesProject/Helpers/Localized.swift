@@ -34,12 +34,12 @@ public enum Localized {
         public static var noImage: String { return "default.noImage".localized() }
         public static var hour: String { return "default.hour".localized() }
         public static var minute: String { return "default.minute".localized() }
+        public static var favorites: String { return "default.favorites".localized() }
     }
     
     public enum Content {
         public static var movies: String { return "content.movies".localized() }
         public static var tv: String { return "content.tv".localized() }
-        public static var favorites: String { return "content.favorites".localized() }
     }
     
     public enum Details {
@@ -55,5 +55,10 @@ public enum Localized {
         public static func numberOfSeasons(_ arguments: CVarArg...) -> String {
             "details.numberOfSeasons".localized(with: arguments)
         }
+    }
+    
+    public enum Favorites {
+        public static var title: String { return "favorites.title".localized() }
+        public static var noFavorites: String { return "favorites.noFavorites".localized() }
     }
 }

@@ -5,12 +5,12 @@
 //  Created by Ivan Velkov on 16.4.25.
 //
 
-import Foundation
+import SwiftUI
 
 enum DetailsModel {
     enum Action {
         case fetchData
-        case addToFavorites
+        case toggleFavorite
         case startWatching
     }
 }

@@ -116,18 +116,15 @@ extension DetailsView {
     func HeaderButtons() -> some View {
         HStack {
             if viewModel.showActions {
+                MPButton(title: Localized.Details.startWatching, style: .primary, size: .small) {
+                }.fixedSize()
                 
                 MPButton(title: viewModel.favoriteTitle, style: .primary, size: .small) {
-                    print("add to favorites")
-                    viewModel.handle(.addToFavorites)
-                }.fixedSize()
-                MPButton(title: Localized.Details.startWatching, style: .primary, size: .small) {
-                    print("start watching")
+                    viewModel.handle(.toggleFavorite)
                 }.fixedSize()
             }
         }
     }
-    
     
     func ContentView() -> some View {
         VStack(spacing: 4) {

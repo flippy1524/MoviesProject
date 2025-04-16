@@ -1,3 +1,10 @@
+//
+//  FavoritesViewModel.swift
+//  MoviesProject
+//
+//  Created by Ivan Velkov on 16.4.25.
+//
+
 import SwiftUI
 
 class FavoritesViewModel: ObservableObject {
@@ -34,6 +41,7 @@ extension FavoritesViewModel: FavoritesViewModelProtocol {
 }
 
 //MARK: Private methods
+
 private extension FavoritesViewModel {
     func fetchData() {
         if let dict = manager?.movieFavorites{
