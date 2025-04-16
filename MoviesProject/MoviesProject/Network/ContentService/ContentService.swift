@@ -16,7 +16,7 @@ class ContentService: NetworkService, HasPageQueryItem {
 }
 
 //MARK: Public methods
-extension ContentService {
+extension ContentService: ContentServiceProtocol {
     func fetchMovies(for category: MovieCategory, page: Int) async throws -> ContentResponse {
         let item = pageQueryItem(page)
         return try await api.dataRequest(category.path, method: .get, queryItems: [item])

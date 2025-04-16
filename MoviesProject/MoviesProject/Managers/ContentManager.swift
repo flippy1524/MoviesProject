@@ -8,24 +8,23 @@
 import Foundation
 import SwiftData
 
-class ContentManager {
-    
-    private var service: ContentService
-    private var modelContainer: ModelContainer
-    
-    
+protocol ContentManagerProtocol {
+    func getAllCategories() async throws -> [HomeContent]
+    func fetchGenres() async
+    func getGenres(for type: ContentType, list: [Int]) -> [ContentGenre]
+    func getHomeContent(for category: MovieCategory, page: Int) async throws -> HomeContent
+    func getMovieDetails(for id: Int) async throws -> MovieDetails
+    func getTVDetails(for id: Int) async throws -> TVDetails
+}
+
+class ContentManager: BaseManager {
     private var movieGenres: MovieGenres?
     private var tvGenres: TVGenres?
-    
-    init(service: ContentService, modelContainer: ModelContainer) {
-        self.service = service
-        self.modelContainer = modelContainer
-    }
 }
 
 //MARK: Public methods
 
-extension ContentManager {
+extension ContentManager: ContentManagerProtocol {
     func getAllCategories() async throws -> [HomeContent] {
         async let category1Movies = getHomeContent(for: .nowPlaying)
         async let category2Movies = getHomeContent(for: .popular)
@@ -91,21 +90,5 @@ extension ContentManager {
     
     private func getGenres(for type: ContentType) async throws -> GenresResponse {
         return try await service.fetchGenres(for: type)
-    }
-}
-
-//MARK: Cache methods
-
-extension ContentManager {
-    @MainActor private func fetchFromCache<T: PersistentModel>() throws -> T? {
-        let context = modelContainer.mainContext
-        let descriptor = FetchDescriptor<T>()
-        return try context.fetch(descriptor).first
-    }
-    
-    @MainActor func updateCache<T: PersistentModel>(with value: T) throws {
-        let context = modelContainer.mainContext
-        context.insert(value)
-        try context.save()
     }
 }
