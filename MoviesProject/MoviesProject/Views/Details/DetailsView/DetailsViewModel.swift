@@ -22,7 +22,7 @@ class DetailsViewModel: ObservableObject {
 
 //MARK: Public methods
 
-extension DetailsViewModel {
+extension DetailsViewModel: DetailsViewModelProtocol {
     func handle(_ action: DetailsModel.Action) {
         switch action {
         case .fetchData:

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {    
     var body: some View {
@@ -30,6 +29,19 @@ struct ContentView: View {
             }
         }
         .tint(Color(.primary))
+    }
+    
+    struct TabLabel: View {
+        let systemImage: String
+        let text: String
+
+        var body: some View {
+            VStack {
+                Image(systemName: systemImage)
+                Text(text)
+                    .textStyle(type: .tabBarText)
+            }
+        }
     }
 }
 

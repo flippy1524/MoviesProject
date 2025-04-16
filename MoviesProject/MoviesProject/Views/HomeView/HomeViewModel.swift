@@ -5,7 +5,6 @@
 //  Created by Ivan Velkov on 13.4.25.
 //
 
-
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
@@ -16,9 +15,9 @@ class HomeViewModel: ObservableObject {
     @Published var selectedMovie: ContentDetailsData?
 }
 
-//MARK: Public methods
 
-extension HomeViewModel {
+//MARK: Public methods
+extension HomeViewModel: HomeViewModelProtocol {
     func handle(_ action: HomeModel.Action) {
         switch action {
         case .fetchCategories:
@@ -59,13 +58,13 @@ extension HomeViewModel {
         
         Task {
             do {
-                if let newContent = try await manager?.getHomeContent(for: homeContent.category, page: homeContent.currentPage + 1) {                    DispatchQueue.main.async {
+                if let newContent = try await manager?.getHomeContent(for: homeContent.category, page: homeContent.currentPage + 1) {
+                    DispatchQueue.main.async {
                         homeContent.updateContent(page: newContent.currentPage, newContent: newContent.contentList, pages: newContent.totalPages)
                     }
                 }
             } catch {
                 print("Error fetching home content: \(error)")
-                
             }
         }
     }

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class SearchViewModel: ObservableObject {
+class SearchViewModel: ObservableObject, SearchViewModelProtocol {
     @Service var manager: SearchManager?
     
     @Published var contentTypes = ContentType.allCases
