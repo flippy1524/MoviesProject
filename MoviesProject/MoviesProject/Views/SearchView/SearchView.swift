@@ -12,34 +12,32 @@ struct SearchView: View {
     @State var width: CGFloat = 0
     @State var isHorizontal: Bool = false
     @State var showSubtitle: Bool = true
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    
+
     var body: some View {
-        VStack {
-            SearchView()
-            
-            Spacer()
-            
-            if viewModel.showContent {
-                ScrollView {
-                    PosterStackView(title: viewModel.title, contentList: viewModel.contentList, showCardSubtitle: showSubtitle) { content in
-                        viewModel.handle(.showDetails(content: content))
-                    } loadNextClosure: {
-                        viewModel.handle(.fetchNextPage)
-                    }.fixedSize(horizontal: false, vertical: true)
+        NavigationStack {
+            VStack {
+                SearchView()
+                
+                Spacer()
+                
+                if viewModel.showContent {
+                    ScrollView {
+                        PosterStackView(title: viewModel.title, contentList: viewModel.contentList, showCardSubtitle: showSubtitle) { content in
+                            viewModel.handle(.showDetails(content: content))
+                        } loadNextClosure: {
+                            viewModel.handle(.fetchNextPage)
+                        }.fixedSize(horizontal: false, vertical: true)
+                    }
                 }
             }
-        }.padding(.top, .small)
-        .padding(.bottom, isHorizontal ? .zero : .small)
-        .onAppear {
-            updateLayout()
-        }
-        .onChange(of: horizontalSizeClass) {
-            updateLayout()
-        }
-        .onChange(of: verticalSizeClass) {
-            updateLayout()
+            .padding(.top, .small)
+            .padding(.bottom, isHorizontal ? .zero : .small)
+            .onRotate() {
+                updateLayout()
+            }
+            .navigationDestination(item: $viewModel.selectedContent) { content in
+                DetailsView(viewModel: .init(contentData: content))
+            }
         }
     }
     

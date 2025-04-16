@@ -25,6 +25,7 @@ extension ContentService {
     func fetchSearchResults(for type: ContentType, with searchQuery: String, page: Int) async throws -> ContentResponse {
         let items = [
             queryItem("query", value: searchQuery),
+            queryItem("include_adult", value: "false"),
             pageQueryItem(page)
         ]
         return try await api.dataRequest(type.searchPath, method: .get, queryItems: items)

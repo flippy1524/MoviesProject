@@ -16,8 +16,6 @@ public struct ServiceRegistry {
     static var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             MPContent.self,
-            TVDetails.self,
-            MovieDetails.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

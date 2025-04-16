@@ -30,7 +30,9 @@ struct ContentImageView: View {
     @ObservedObject var viewModel: CustomImageViewModel
     @State var isLoaded = false
     @State var isScaledLoaded = false
-
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    
     init(viewModel: CustomImageViewModel) {
         self.viewModel = viewModel
     }
@@ -77,6 +79,12 @@ struct ContentImageView: View {
             }
         }
         .cornerRadius(viewModel.cornerRadius)
+        .onChange(of: horizontalSizeClass) {
+            viewModel.objectWillChange.send()
+        }
+        .onChange(of: verticalSizeClass) {
+            viewModel.objectWillChange.send()
+        }
     }
 }
 
@@ -141,6 +149,7 @@ class CustomImageViewModel: ObservableObject {
     enum ImageType {
         case poster
         case backdrop
+        case logo
         
         var sizes: [CGFloat] {
             switch self {
@@ -148,16 +157,16 @@ class CustomImageViewModel: ObservableObject {
                 return [92, 154, 200, 292, 342, 500, 780]
             case .backdrop:
                 return [300, 780, 1280]
-                
+            case .logo:
+                return [45, 92, 154, 185, 300, 500]
             }
         }
         
         var cornerRadius: MPCornerRadius {
             switch self {
             case .poster:
-                //TODO: Maybe make this modular based on the size to fit appropriately?
                 return .small
-            case .backdrop:
+            case .backdrop, .logo:
                 return .none
             }
         }

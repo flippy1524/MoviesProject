@@ -13,6 +13,7 @@ class HomeViewModel: ObservableObject {
     
     @Published var homeContentList: [HomeContent] = []
     @Published var hasFetched = false
+    @Published var selectedMovie: ContentDetailsData?
 }
 
 //MARK: Public methods
@@ -33,17 +34,7 @@ extension HomeViewModel {
 //MARK: Private methods
 extension HomeViewModel {
     private func showDetails(for movie: MPContent) {
-        Task {
-            do {
-                let movie = try await manager?.getMovieDetails(for: 12)
-                print(movie?.title)
-                
-                let tv = try await manager?.getTVDetails(for: 33)
-                print(tv?.name)
-            } catch {
-                
-            }
-        }
+        selectedMovie = movie.contentDetailsData(for: .movie)
     }
     
     private func fetchCategories() {

@@ -19,6 +19,7 @@ public enum MPPadding: CGFloat, RawRepresentable {
     case large = 24
     case extraLarge = 32
     case extraExtraLarge = 48
+    case extraExtraExtraLarge = 64
 
 }
 

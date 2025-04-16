@@ -13,6 +13,7 @@ class SearchViewModel: ObservableObject {
     
     @Published var contentTypes = ContentType.allCases
     @Published var searchContent: SearchContent?
+    @Published var selectedContent: ContentDetailsData?
     @Published var selectedType: ContentType = .movie {
         didSet {
             handle(.changedType)
@@ -125,5 +126,6 @@ extension SearchViewModel {
     
     private func showDetails(for content: MPContent) {
         let type = selectedType
+        selectedContent = content.contentDetailsData(for: type)
     }
 }

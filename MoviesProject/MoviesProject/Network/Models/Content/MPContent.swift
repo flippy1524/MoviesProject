@@ -41,8 +41,13 @@ class MPContent: Decodable {
         self.overview = overview
     }
 
+    
     var posterData: PosterCardData {
         return .init(id: id, title: title ?? name, posterPath: posterPath, overview: overview)
+    }
+    
+    func contentDetailsData(for type: ContentType) -> ContentDetailsData {
+        return .init(id: id, type: type, title: title ?? name, backdropPath: backdropPath, overview: overview)
     }
     
     required convenience init(from decoder: Decoder) throws {

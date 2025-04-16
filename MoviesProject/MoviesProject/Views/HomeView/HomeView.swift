@@ -11,20 +11,26 @@ struct HomeView: View {
     
     @ObservedObject var viewModel = HomeViewModel()
     var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                ForEach(viewModel.homeContentList, id: \.category) { homeContent in
-                    PosterStackView(title: homeContent.title, contentList: homeContent.contentList) { movie in
-                        viewModel.handle(.showDetails(movie: movie))
-                    } loadNextClosure: {
-                        viewModel.handle(.fetchNextPage(for: homeContent))
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(viewModel.homeContentList, id: \.category) { homeContent in
+                        PosterStackView(title: homeContent.title, contentList: homeContent.contentList) { movie in
+                            viewModel.handle(.showDetails(movie: movie))
+                        } loadNextClosure: {
+                            viewModel.handle(.fetchNextPage(for: homeContent))
+                        }
                     }
                 }
             }
-        }.padding(.vertical, .medium)
-        .background(Color(.background))
-        .task {
-            viewModel.handle(.fetchCategories)
+            .padding(.vertical, .medium)
+            .background(Color(.background))
+            .task {
+                viewModel.handle(.fetchCategories)
+            }
+            .navigationDestination(item: $viewModel.selectedMovie) { movie in
+                DetailsView(viewModel: .init(contentData: movie))
+            }
         }
     }
 }
