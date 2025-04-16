@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ContentDetailsData: Hashable {
+struct ContentDetailsData: Codable, Hashable {
     let id: Int
     let type: ContentType
     let title: String?

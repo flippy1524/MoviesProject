@@ -40,7 +40,7 @@ enum MovieCategory: CaseIterable {
     }
 }
 
-enum ContentType: CaseIterable {
+enum ContentType: CaseIterable, Codable {
     case movie
     case tv
     

@@ -1,5 +1,5 @@
 //
-//  BaseManager.swift
+//  BaseServiceManager.swift
 //  MoviesProject
 //
 //  Created by Ivan Velkov on 16.4.25.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-class BaseManager {
+class BaseServiceManager {
     var service: ContentService
     var modelContainer: ModelContainer
     
@@ -18,7 +18,7 @@ class BaseManager {
     }
 }
 
-extension BaseManager: ModelCaching {
+extension BaseServiceManager: ModelCaching {
     @MainActor func fetchFromCache<T: PersistentModel>() throws -> T? {
         let context = modelContainer.mainContext
         let descriptor = FetchDescriptor<T>()

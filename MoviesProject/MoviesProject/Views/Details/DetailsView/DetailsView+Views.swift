@@ -119,7 +119,7 @@ extension DetailsView {
                 
                 MPButton(title: viewModel.favoriteTitle, style: .primary, size: .small) {
                     print("add to favorites")
-                    
+                    viewModel.handle(.addToFavorites)
                 }.fixedSize()
                 MPButton(title: Localized.Details.startWatching, style: .primary, size: .small) {
                     print("start watching")

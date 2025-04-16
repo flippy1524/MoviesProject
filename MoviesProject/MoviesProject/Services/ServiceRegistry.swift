@@ -36,5 +36,7 @@ public struct ServiceRegistry {
         ServiceContainer.register(ContentManager.self, with: contentmanager)
         let searchManager = SearchManager(service: ContentService(api: urlSessionClient), modelContainer: sharedModelContainer)
         ServiceContainer.register(SearchManager.self, with: searchManager)
+        let cacheManager = CacheManager()
+        ServiceContainer.register(CacheManager.self, with: cacheManager)
     }
 }

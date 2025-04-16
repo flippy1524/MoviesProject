@@ -17,7 +17,7 @@ protocol ContentManagerProtocol {
     func getTVDetails(for id: Int) async throws -> TVDetails
 }
 
-class ContentManager: BaseManager {
+class ContentManager: BaseServiceManager {
     private var movieGenres: MovieGenres?
     private var tvGenres: TVGenres?
 }

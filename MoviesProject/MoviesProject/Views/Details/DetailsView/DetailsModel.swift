@@ -10,7 +10,7 @@ import Foundation
 enum DetailsModel {
     enum Action {
         case fetchData
-        case addToFavorites(Bool)
+        case addToFavorites
         case startWatching
     }
 }

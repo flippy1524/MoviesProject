@@ -9,5 +9,7 @@
 public struct Constants {
     public struct AppStorage {
         public static let appearance = "AppStorage.appearance"
+        public static let movieFavorites = "AppStorage.movieFavorites"
+        public static let tvFavorites = "AppStorage.tvFavorites"
     }
 }

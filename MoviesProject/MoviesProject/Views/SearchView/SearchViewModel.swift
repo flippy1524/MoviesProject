@@ -96,6 +96,7 @@ extension SearchViewModel {
             do {
                 if let searchContent = try await manager?.getSearchContent(for: selectedType, with: query) {
                     DispatchQueue.main.async {
+                        self.searchContent = nil
                         self.searchContent = searchContent
                     }
                 }

@@ -9,7 +9,10 @@ import SwiftUI
 
 class DetailsViewModel: ObservableObject {
     @Service var manager: ContentManager?
+    @Service var cacheManager: CacheManager?
+    
     @Published var showActions: Bool = false
+    @Published var isFavorite: Bool = false
     @Published var contentLabels: [DetailsLabel] = []
     @Published var headerData: HeaderData?
     
@@ -27,8 +30,8 @@ extension DetailsViewModel: DetailsViewModelProtocol {
         switch action {
         case .fetchData:
             fetchContent()
-        case .addToFavorites(_):
-            break
+        case .addToFavorites:
+            updateFavorite(!isFavorite)
         case .startWatching:
             break
         }
@@ -43,7 +46,12 @@ extension DetailsViewModel: DetailsViewModelProtocol {
     }
     
     var favoriteTitle: String {
-        Localized.Details.addToFavorites
+        switch isFavorite {
+        case true:
+            Localized.Details.removeFromFavorites
+        case false:
+            Localized.Details.addToFavorites
+        }
     }
 }
 
@@ -54,7 +62,6 @@ extension DetailsViewModel {
         Task {
             do {
                 switch contentData.type {
-                    
                 case .movie:
                     if let data = try await manager?.getMovieDetails(for: contentData.id) {
                         populateMovie(with: data)
@@ -121,11 +128,27 @@ extension DetailsViewModel {
     private func display(header: HeaderData?, details: [DetailsLabel]) {
         DispatchQueue.main.async {
             withAnimation(.easeIn(duration: 0.8)) {
+                self.isFavorite = self.cachedIsFavorite
                 self.headerData = header
                 self.contentLabels = details
                 self.showActions = true
             }
         }
+    }
+    
+    private func updateFavorite(_ bool: Bool) {
+        switch bool {
+        case true:
+            cacheManager?.setFavorite(contentData)
+        case false:
+            cacheManager?.removeFavorite(contentData)
+        }
+        
+        isFavorite = cachedIsFavorite
+    }
+    
+    private var cachedIsFavorite: Bool {
+        return cacheManager?.getFavorite(for: contentData.id, type: contentData.type) != nil
     }
 }
 

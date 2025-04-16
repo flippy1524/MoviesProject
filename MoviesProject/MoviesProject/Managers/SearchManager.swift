@@ -13,7 +13,7 @@ protocol SearchManagerProtocol {
     func getSearchResults(for type: ContentType, with query: String, page: Int) async throws -> ContentResponse
 }
 
-class SearchManager: BaseManager {}
+class SearchManager: BaseServiceManager {}
 
 //MARK: Public methods
 
