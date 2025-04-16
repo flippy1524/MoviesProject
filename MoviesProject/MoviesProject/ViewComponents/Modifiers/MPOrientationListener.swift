@@ -11,20 +11,27 @@ import SwiftUI
 struct MPDeviceRotationViewModifier: ViewModifier {
     let action: FunctionClosure
     let includeOnAppear: Bool
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+
     func body(content: Content) -> some View {
         content
-            .onAppear(perform: {
+            .onAppear {
                 if includeOnAppear {
                     action()
                 }
-            })
-            .onChange(of: horizontalSizeClass) {
-                action()
+                NotificationCenter.default.addObserver(
+                    forName: UIDevice.orientationDidChangeNotification,
+                    object: nil,
+                    queue: .main
+                ) { _ in
+                    action()
+                }
             }
-            .onChange(of: verticalSizeClass) {
-                action()
+            .onDisappear {
+                NotificationCenter.default.removeObserver(
+                    self,
+                    name: UIDevice.orientationDidChangeNotification,
+                    object: nil
+                )
             }
     }
 }

@@ -34,3 +34,4 @@ var isDeviceInLandscape: Bool {
     let screen = UIScreen.main.bounds
     return screen.width > screen.height
 }
+

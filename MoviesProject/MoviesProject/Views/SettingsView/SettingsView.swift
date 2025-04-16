@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Rectangle().tint(.red)
+        MPNavigationStack {
+            Rectangle().tint(.red)
+        }
     }
 }
 

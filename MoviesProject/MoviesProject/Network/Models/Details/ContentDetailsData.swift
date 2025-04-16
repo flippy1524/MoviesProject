@@ -11,6 +11,7 @@ struct ContentDetailsData: Hashable {
     let id: Int
     let type: ContentType
     let title: String?
+    let posterPath: String?
     let backdropPath: String?
     let overview: String?
 }

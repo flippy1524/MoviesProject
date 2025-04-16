@@ -11,7 +11,7 @@ struct HomeView: View {
     
     @ObservedObject var viewModel = HomeViewModel()
     var body: some View {
-        NavigationStack {
+        MPNavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
                     ForEach(viewModel.homeContentList, id: \.category) { homeContent in
@@ -24,7 +24,6 @@ struct HomeView: View {
                 }
             }
             .padding(.vertical, .medium)
-            .background(Color(.background))
             .task {
                 viewModel.handle(.fetchCategories)
             }

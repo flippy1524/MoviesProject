@@ -34,9 +34,7 @@ extension URLSessionClient {
     ) async throws -> T {
         do {
             let url = try generateURL(with: path, queryItems: queryItems)
-            
             let request = generateRequest(with: url, method: method, parameters: parameters)
-            
             let (data, response) = try await URLSession.shared.data(for: request)
 
             guard let httpResponse = response as? HTTPURLResponse,
@@ -44,11 +42,9 @@ extension URLSessionClient {
                 print("🔌 Data request \(method.rawValue) \(url.absoluteString) ❌ bad status")
                 throw NetworkError.badStatusCode
             }
-
+            
             let decoded: T = try decode(data)
-        
             print("🔌 Data request \(method.rawValue) \(url.absoluteString) ✅")
-
             return decoded
         } catch {
             throw error
@@ -63,15 +59,12 @@ fileprivate extension URLSessionClient {
     func generateRequest(with url: URL, method: HTTPMethod, parameters: [String : Any]?) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        
         headers.forEach {
             request.setValue($0.value, forHTTPHeaderField: $0.key)
         }
-
         if let parameters = parameters {
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
         }
-        
         return request
     }
     
@@ -80,7 +73,6 @@ fileprivate extension URLSessionClient {
         if let queryItems = queryItems {
             components?.queryItems = queryItems
         }
-        
         guard let url = components?.url else {
         print("🔌 Data request \(baseURL)\(path) ❌ Bad URL \(components?.debugDescription ?? "nil")")
             throw NetworkError.badUrl
@@ -125,6 +117,5 @@ private protocol APIMethods {
     func generateURL(with path: String, queryItems: [URLQueryItem]?) throws -> URL
     func generateRequest(with url: URL, method: HTTPMethod, parameters: [String: Any]?) -> URLRequest
     func decode<T: Decodable>(_ data: Data) throws -> T
-    
     var headers: [String: String] { get }
 }

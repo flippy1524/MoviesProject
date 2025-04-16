@@ -14,7 +14,7 @@ struct SearchView: View {
     @State var showSubtitle: Bool = true
 
     var body: some View {
-        NavigationStack {
+        MPNavigationStack {
             VStack {
                 SearchView()
                 
