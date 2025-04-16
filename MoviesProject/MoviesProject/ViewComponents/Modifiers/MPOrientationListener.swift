@@ -12,26 +12,20 @@ struct MPDeviceRotationViewModifier: ViewModifier {
     let action: FunctionClosure
     let includeOnAppear: Bool
 
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     func body(content: Content) -> some View {
         content
-            .onAppear {
+            .onAppear(perform: {
                 if includeOnAppear {
                     action()
                 }
-                NotificationCenter.default.addObserver(
-                    forName: UIDevice.orientationDidChangeNotification,
-                    object: nil,
-                    queue: .main
-                ) { _ in
-                    action()
-                }
+            })
+            .onChange(of: horizontalSizeClass) {
+                action()
             }
-            .onDisappear {
-                NotificationCenter.default.removeObserver(
-                    self,
-                    name: UIDevice.orientationDidChangeNotification,
-                    object: nil
-                )
+            .onChange(of: verticalSizeClass) {
+                action()
             }
     }
 }
