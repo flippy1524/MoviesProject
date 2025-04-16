@@ -34,7 +34,6 @@ class BaseDetails: Decodable {
     
     var formattedGenres: String? {
         guard let genres = genres, !genres.isEmpty else { return nil }
-        
         return genres.compactMap { $0.name }.joined(separator: ", ")
     }
 }

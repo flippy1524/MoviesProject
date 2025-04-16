@@ -30,8 +30,5 @@ func posterCardWidth(with spacing: CGFloat) -> CGFloat {
     return availableWidth / viewsPerScreen
 }
 
-var isDeviceInLandscape: Bool {
-    let screen = UIScreen.main.bounds
-    return screen.width > screen.height
-}
+
 

@@ -29,6 +29,6 @@ struct ContentGenre: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case id
-        case name = "name"
+        case name
     }
 }

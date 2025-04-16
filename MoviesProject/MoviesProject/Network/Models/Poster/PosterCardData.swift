@@ -5,9 +5,6 @@
 //  Created by Ivan Velkov on 13.4.25.
 //
 
-import Foundation
-
-
 struct PosterCardData {
     let title: String?
     let posterPath: String?

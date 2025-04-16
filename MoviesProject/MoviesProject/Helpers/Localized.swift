@@ -5,7 +5,6 @@
 //  Created by Ivan Velkov on 14.4.25.
 //
 
-
 public enum Localized {
     public enum Category {
         public static var nowPlaying: String { return "category.nowPlaying".localized() }

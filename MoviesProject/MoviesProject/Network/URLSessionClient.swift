@@ -7,19 +7,28 @@
 
 import Foundation
 
+protocol NetworkSession {
+    func data(for request: URLRequest) async throws -> (Data, URLResponse)
+}
+
+extension URLSession: NetworkSession { }
+
 class URLSessionClient: APIClient, HasAuthentication, APIMethods {
     let baseURL: String
     let decoder: JSONDecoder
     let accessToken: String
+    private let session: NetworkSession
 
     init(
         baseURL: String = BaseEnvironment.baseURL,
         decoder: JSONDecoder = JSONDecoder(),
-        accessToken: String = BaseEnvironment.accessToken
+        accessToken: String = BaseEnvironment.accessToken,
+        session: NetworkSession = URLSession.shared
     ) {
         self.baseURL = baseURL
         self.decoder = decoder
         self.accessToken = accessToken
+        self.session = session
     }
 }
 

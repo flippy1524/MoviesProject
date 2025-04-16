@@ -5,8 +5,6 @@
 //  Created by Ivan Velkov on 15.4.25.
 //
 
-import SwiftData
-
 class TVGenres: GenresResponse {
     override init(genres: [ContentGenre]) {
         super.init(genres: genres)

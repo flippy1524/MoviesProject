@@ -5,11 +5,7 @@
 //  Created by Ivan Velkov on 14.4.25.
 //
 
-/*
- This can be extended to work
- */
 import SwiftUI
-
 
 public extension Font {
     static func font(with type: MPFontType) -> Font {
@@ -21,6 +17,13 @@ public extension UIFont {
     static func uiFont(with type: MPFontType) -> UIFont {
         type.uiFont
     }
+}
+
+public struct FontAttributes {
+    let size: CGFloat
+    let weight: Font.Weight
+    let uiWeight: UIFont.Weight
+    let defaultColor: Color
 }
 
 public enum MPFontType {
@@ -37,91 +40,111 @@ public enum MPFontType {
     case caption2
     case tabBarText
     
-    var size: CGFloat {
-        switch self {
-        case .titleLarge: return 34
-        case .title1: return 28
-        case .title2: return 22
-        case .title3: return 20
-        case .headline: return 16
-        case .body: return 16
-        case .body2: return 14
-        case .subhead: return 14
-        case .footnote: return 12
-        case .caption1: return 12
-        case .caption2: return 10
-        case .tabBarText: return 10
-        }
-    }
-    
-    var weight: Font.Weight {
-        switch self {
-        case .titleLarge: return .bold
-        case .title1: return .medium
-        case .title2: return .medium
-        case .title3: return .medium
-        case .headline: return .semibold
-        case .body: return .regular
-        case .body2: return .regular
-        case .subhead: return .semibold
-        case .footnote: return .regular
-        case .caption1: return .medium
-        case .caption2: return .regular
-        case .tabBarText: return .bold
-        }
-    }
-    
-    var uiWeight: UIFont.Weight {
-        switch self {
-        case .titleLarge: return .bold
-        case .title1: return .medium
-        case .title2: return .medium
-        case .title3: return .medium
-        case .headline: return .semibold
-        case .body: return .regular
-        case .body2: return .regular
-        case .subhead: return .semibold
-        case .footnote: return .regular
-        case .caption1: return .medium
-        case .caption2: return .regular
-        case .tabBarText: return .bold
-        }
-    }
-    
-    var defaultColor: Color {
+    var attributes: FontAttributes {
         switch self {
         case .titleLarge:
-            return Color(.onSurface)
+            return FontAttributes(
+                size: 34,
+                weight: .bold,
+                uiWeight: .bold,
+                defaultColor: Color(.onSurface)
+            )
+            
         case .title1:
-            return Color(.onSurface)
+            return FontAttributes(
+                size: 28,
+                weight: .medium,
+                uiWeight: .medium,
+                defaultColor: Color(.onSurface)
+            )
+            
         case .title2:
-            return Color(.onSurface)
+            return FontAttributes(
+                size: 22,
+                weight: .medium,
+                uiWeight: .medium,
+                defaultColor: Color(.onSurface)
+            )
+            
         case .title3:
-            return Color(.onSurface)
+            return FontAttributes(
+                size: 20,
+                weight: .medium,
+                uiWeight: .medium,
+                defaultColor: Color(.onSurface)
+            )
+            
         case .headline:
-            return Color(.onSurface)
+            return FontAttributes(
+                size: 16,
+                weight: .semibold,
+                uiWeight: .semibold,
+                defaultColor: Color(.onSurface)
+            )
+            
         case .body:
-            return Color(.onSurface)
+            return FontAttributes(
+                size: 16,
+                weight: .regular,
+                uiWeight: .regular,
+                defaultColor: Color(.onSurface)
+            )
+            
         case .body2:
-            return Color(.onSurfaceVariant)
+            return FontAttributes(
+                size: 14,
+                weight: .regular,
+                uiWeight: .regular,
+                defaultColor: Color(.onSurfaceVariant)
+            )
+            
         case .subhead:
-            return Color(.onSurface)
+            return FontAttributes(
+                size: 14,
+                weight: .semibold,
+                uiWeight: .semibold,
+                defaultColor: Color(.onSurface)
+            )
+            
         case .footnote:
-            return Color(.onSurfaceVariant)
+            return FontAttributes(
+                size: 12,
+                weight: .regular,
+                uiWeight: .regular,
+                defaultColor: Color(.onSurfaceVariant)
+            )
+            
         case .caption1:
-            return Color(.onSurface)
+            return FontAttributes(
+                size: 12,
+                weight: .medium,
+                uiWeight: .medium,
+                defaultColor: Color(.onSurface)
+            )
+            
         case .caption2:
-            return Color(.onSurface)
+            return FontAttributes(
+                size: 10,
+                weight: .regular,
+                uiWeight: .regular,
+                defaultColor: Color(.onSurface)
+            )
+            
         case .tabBarText:
-            return .black
+            return FontAttributes(
+                size: 10,
+                weight: .bold,
+                uiWeight: .bold,
+                defaultColor: .black
+            )
         }
     }
-    
+
     var font: Font {
-        return Font.system(size: size, weight: weight)
+        return Font.system(size: attributes.size, weight: attributes.weight)
     }
 
     var uiFont: UIFont {
-        return UIFont.systemFont(ofSize: size, weight: uiWeight)
+        return UIFont.systemFont(ofSize: attributes.size, weight: attributes.uiWeight)
     }
 }

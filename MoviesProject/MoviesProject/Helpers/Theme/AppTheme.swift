@@ -1,5 +1,5 @@
 //
-//  DealerTheme.swift
+//  AppTheme.swift
 //  MoviesProject
 //
 //  Created by Ivan Velkov on 14.4.25.

@@ -18,8 +18,8 @@ class MPContent: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case title = "title"
-        case name = "name"
+        case title
+        case name
         case posterPath = "poster_path"
         case backdropPath = "backdrop_path"
         case overview

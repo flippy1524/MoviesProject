@@ -14,6 +14,5 @@ class SearchContent: BaseContent, SearchContentProtocol
 }
 
 fileprivate protocol SearchContentProtocol {
-    var type: ContentType { get}
-
+    var type: ContentType { get }
 }

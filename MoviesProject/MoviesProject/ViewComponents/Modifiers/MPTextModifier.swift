@@ -62,6 +62,6 @@ struct MPTextStyle: ViewModifier {
 
 extension View {
     public func textStyle(type: MPFontType, lines: Int? = nil, color: Color? = nil, staticHeight: Bool = false, staticHeightAlignment: Alignment = .center) -> some View {
-        self.modifier(MoviesProject.MPTextStyle(font: type, color: color ?? type.defaultColor, staticHeight: staticHeight, staticHeightAlignment: staticHeightAlignment, lines: lines))
+        self.modifier(MoviesProject.MPTextStyle(font: type, color: color ?? type.attributes.defaultColor, staticHeight: staticHeight, staticHeightAlignment: staticHeightAlignment, lines: lines))
     }
 }

@@ -10,82 +10,7 @@ import SwiftUI
 public extension Color {
     
     init(_ themeColor: ThemeColor, _ theme: Theme? = nil) {
-        let theme = theme ?? ThemeManager.shared.current
-        
-        switch themeColor {
-            // Primary Container Colors
-        case .primary:
-            self = Color(theme.primary)
-        case .onPrimary:
-            self = Color(theme.onPrimary)
-        case .primaryContainer:
-            self = Color(theme.primaryContainer)
-        case .onPrimaryContainer:
-            self = Color(theme.onPrimaryContainer)
-        case .primaryFixed:
-            self = Color(theme.primaryFixed)
-        case .onPrimaryFixed:
-            self = Color(theme.onPrimaryFixed)
-        case .primaryFocus:
-            self = Color(theme.primaryFocus)
-            
-            // Secondary Container Colors
-        case .secondary:
-            self = Color(theme.secondary)
-        case .onSecondary:
-            self = Color(theme.onSecondary)
-        case .secondaryContainer:
-            self = Color(theme.secondaryContainer)
-        case .onSecondaryContainer:
-            self = Color(theme.onSecondaryContainer)
-            
-            // Error Container Colors
-        case .error:
-            self = Color(theme.error)
-        case .onError:
-            self = Color(theme.onError)
-        case .errorContainer:
-            self = Color(theme.errorContainer)
-        case .onErrorContainer:
-            self = Color(theme.onErrorContainer)
-            
-            // Surface Container Colors
-        case .surface:
-            self = Color(theme.surface)
-        case .onSurface:
-            self = Color(theme.onSurface)
-        case .onSurfaceVariant:
-            self = Color(theme.onSurfaceVariant)
-        case .surfaceContainerLowest:
-            self = Color(theme.surfaceContainerLowest)
-        case .surfaceContainerHigh:
-            self = Color(theme.surfaceContainerHigh)
-        case .surfaceContainer:
-            self = Color(theme.surfaceContainer)
-        case .onSurfaceHover:
-            self = Color(theme.onSurfaceHover)
-        case .onSurfaceFocus:
-            self = Color(theme.onSurfaceFocus)
-        case .surfaceVariant:
-            self = Color(theme.surfaceVariant)
-        case .onSurfaceDim:
-            self = Color(theme.onSurfaceDim)
-
-            // Background Colors
-        case .background:
-            self = Color(theme.background)
-        case .onBackground:
-            self = Color(theme.onBackground)
-        case .grayBackground:
-            self = Color(theme.grayBackground)
-            
-            // Outline Colors
-        case .outline:
-            self = Color(theme.outline)
-        case .outlineVariant:
-            self = Color(theme.outlineVariant)
-   
-        }
+        self = themeColor.resolve(in: theme ?? ThemeManager.shared.current)
     }
     
     init(hex: String) {
@@ -111,5 +36,47 @@ public extension Color {
             blue:  Double(b) / 255,
             opacity: Double(a) / 255
         )
+    }
+}
+
+extension ThemeColor {
+    func resolve(in theme: Theme) -> Color {
+        switch self {
+        case .primary: return Color(theme.primary)
+        case .onPrimary: return Color(theme.onPrimary)
+        case .primaryContainer: return Color(theme.primaryContainer)
+        case .onPrimaryContainer: return Color(theme.onPrimaryContainer)
+        case .primaryFixed: return Color(theme.primaryFixed)
+        case .onPrimaryFixed: return Color(theme.onPrimaryFixed)
+        case .primaryFocus: return Color(theme.primaryFocus)
+
+        case .secondary: return Color(theme.secondary)
+        case .onSecondary: return Color(theme.onSecondary)
+        case .secondaryContainer: return Color(theme.secondaryContainer)
+        case .onSecondaryContainer: return Color(theme.onSecondaryContainer)
+
+        case .error: return Color(theme.error)
+        case .onError: return Color(theme.onError)
+        case .errorContainer: return Color(theme.errorContainer)
+        case .onErrorContainer: return Color(theme.onErrorContainer)
+
+        case .surface: return Color(theme.surface)
+        case .onSurface: return Color(theme.onSurface)
+        case .onSurfaceVariant: return Color(theme.onSurfaceVariant)
+        case .surfaceContainerLowest: return Color(theme.surfaceContainerLowest)
+        case .surfaceContainerHigh: return Color(theme.surfaceContainerHigh)
+        case .surfaceContainer: return Color(theme.surfaceContainer)
+        case .onSurfaceHover: return Color(theme.onSurfaceHover)
+        case .onSurfaceFocus: return Color(theme.onSurfaceFocus)
+        case .surfaceVariant: return Color(theme.surfaceVariant)
+        case .onSurfaceDim: return Color(theme.onSurfaceDim)
+
+        case .background: return Color(theme.background)
+        case .onBackground: return Color(theme.onBackground)
+        case .grayBackground: return Color(theme.grayBackground)
+
+        case .outline: return Color(theme.outline)
+        case .outlineVariant: return Color(theme.outlineVariant)
+        }
     }
 }
