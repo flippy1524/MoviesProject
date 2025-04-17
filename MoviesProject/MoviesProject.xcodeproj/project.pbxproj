@@ -201,11 +201,6 @@
 			path = MoviesProject;
 			sourceTree = "<group>";
 		};
-		4B8C21CB2DA97E10001D208E /* MoviesProjectTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MoviesProjectTests;
-			sourceTree = "<group>";
-		};
 		4B8C21D52DA97E10001D208E /* MoviesProjectUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MoviesProjectUITests;
@@ -342,7 +337,6 @@
 			isa = PBXGroup;
 			children = (
 				4B8C21B72DA97E0F001D208E /* MoviesProject */,
-				4B8C21CB2DA97E10001D208E /* MoviesProjectTests */,
 				4B8C21D52DA97E10001D208E /* MoviesProjectUITests */,
 				4B8C26CF2DB14A68001D208E /* MPCore */,
 				4B8C26DD2DB14A68001D208E /* MPCoreTests */,
@@ -445,9 +439,6 @@
 			);
 			dependencies = (
 				4B8C21CA2DA97E10001D208E /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				4B8C21CB2DA97E10001D208E /* MoviesProjectTests */,
 			);
 			name = MoviesProjectTests;
 			packageProductDependencies = (

@@ -64,8 +64,8 @@ extension URLSessionClient {
 
 //MARK: Private methods
 
-fileprivate extension URLSessionClient {
-    func generateRequest(with url: URL, method: HTTPMethod, parameters: [String : Any]?) -> URLRequest {
+extension URLSessionClient {
+    internal func generateRequest(with url: URL, method: HTTPMethod, parameters: [String : Any]?) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         headers.forEach {
@@ -77,7 +77,7 @@ fileprivate extension URLSessionClient {
         return request
     }
     
-    func generateURL(with path: String, queryItems: [URLQueryItem]?) throws -> URL {
+    internal func generateURL(with path: String, queryItems: [URLQueryItem]?) throws -> URL {
         var components = URLComponents(string: baseURL + path)
         if let queryItems = queryItems {
             components?.queryItems = queryItems
@@ -89,7 +89,7 @@ fileprivate extension URLSessionClient {
         return url
     }
     
-    func decode<T: Decodable>(_ data: Data) throws -> T {
+    internal func decode<T: Decodable>(_ data: Data) throws -> T {
         do {
             return try self.decoder.decode(T.self, from: data)
         } catch let decodingError as DecodingError {
@@ -114,7 +114,7 @@ fileprivate extension URLSessionClient {
         }
     }
     
-    var headers: [String: String] {
+    internal var headers: [String: String] {
         return [
             "Accept": "application/json",
             "Authorization": "Bearer \(accessToken)"

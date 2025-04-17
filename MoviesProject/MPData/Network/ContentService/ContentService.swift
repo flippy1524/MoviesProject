@@ -48,11 +48,11 @@ extension ContentService: ContentServiceProtocol {
 
 //MARK: Private methods
 extension ContentService {
-    func pageQueryItem(_ page: Int) -> URLQueryItem {
+    internal func pageQueryItem(_ page: Int) -> URLQueryItem {
         queryItem("page", value: String(page))
     }
     
-    func queryItem(_ key: String, value: String) -> URLQueryItem {
+    internal func queryItem(_ key: String, value: String) -> URLQueryItem {
         URLQueryItem(name: key, value: value)
     }
 }

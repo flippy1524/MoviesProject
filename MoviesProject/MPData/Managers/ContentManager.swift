@@ -14,6 +14,10 @@ protocol ContentManagerProtocol {
     func getHomeContent(for category: MovieCategory, page: Int) async throws -> HomeContent
     func getMovieDetails(for id: Int) async throws -> MovieDetails
     func getTVDetails(for id: Int) async throws -> TVDetails
+    func getMovieGenres() async throws -> MovieGenres
+    func getTVGenres() async throws -> TVGenres
+    func getMovies(for category: MovieCategory, page: Int) async throws -> ContentResponse
+    func getGenres(for type: ContentType) async throws -> GenresResponse
 }
 
 public class ContentManager: BaseServiceManager {
@@ -75,19 +79,19 @@ extension ContentManager: ContentManagerProtocol {
 //MARK: Private methods
 
 extension ContentManager {
-    private func getMovieGenres() async throws -> MovieGenres {
+    internal func getMovieGenres() async throws -> MovieGenres {
         return try await MovieGenres(genres: getGenres(for: .movie).genres)
     }
     
-    private func getTVGenres() async throws -> TVGenres {
+    internal func getTVGenres() async throws -> TVGenres {
         return try await TVGenres(genres: getGenres(for: .tv).genres)
     }
     
-    private func getMovies(for category: MovieCategory, page: Int) async throws -> ContentResponse {
+    internal func getMovies(for category: MovieCategory, page: Int) async throws -> ContentResponse {
         return try await service.fetchMovies(for: category, page: page)
     }
     
-    private func getGenres(for type: ContentType) async throws -> GenresResponse {
+    internal func getGenres(for type: ContentType) async throws -> GenresResponse {
         return try await service.fetchGenres(for: type)
     }
 }
