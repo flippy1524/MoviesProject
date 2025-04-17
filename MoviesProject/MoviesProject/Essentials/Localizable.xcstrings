@@ -1,12 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
-    "Base url: %@" : {
-
-    },
     "category.nowPlaying" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -83,9 +77,6 @@
           }
         }
       }
-    },
-    "Current scheme: %@" : {
-
     },
     "default.hour" : {
       "extractionState" : "manual",
@@ -218,9 +209,6 @@
           }
         }
       }
-    },
-    "MoviesProject" : {
-
     },
     "search.noResults" : {
       "extractionState" : "manual",

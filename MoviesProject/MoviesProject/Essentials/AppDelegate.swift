@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MPData
+import MPCore
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
     func application(

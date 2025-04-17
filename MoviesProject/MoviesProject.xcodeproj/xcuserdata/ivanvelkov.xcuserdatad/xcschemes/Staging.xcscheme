@@ -29,6 +29,41 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4B8C26D62DB14A68001D208E"
+               BuildableName = "MPCoreTests.xctest"
+               BlueprintName = "MPCoreTests"
+               ReferencedContainer = "container:MoviesProject.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4B8C27392DB14E67001D208E"
+               BuildableName = "MPDataTests.xctest"
+               BlueprintName = "MPDataTests"
+               ReferencedContainer = "container:MoviesProject.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4B8C27802DB1502C001D208E"
+               BuildableName = "MPUtilsTests.xctest"
+               BlueprintName = "MPUtilsTests"
+               ReferencedContainer = "container:MoviesProject.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "DebugStaging"
