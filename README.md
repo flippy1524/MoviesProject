@@ -12,6 +12,7 @@ A basic example of a Netflix equivalent project using [TMDB's](https://developer
 - Different environments based on scheme selection
 - Securely kept urls, tokens etc in info.plist
 - Protocol based classes with inheritance
+- Frameworks for separating logic and introduce inheritance, and access control levels
 - Unit tests for base functionalities
 - Natively written networking
 - Using async await for concurrency
@@ -33,7 +34,7 @@ A basic example of a Netflix equivalent project using [TMDB's](https://developer
 # Dependencies
 Dependencies are injected via Swift Package Manager
 - [Kingfisher](https://github.com/onevcat/Kingfisher) 
-- [SwiftLint](https://github.com/realm/SwiftLint)
+- [SwiftLint](https://github.com/realm/SwiftLint) 
 
 # Todo's
 - Brind down the iOS 18 requirement by building the UI differently (can be easily achieved to iOS 15) 
@@ -42,7 +43,6 @@ Dependencies are injected via Swift Package Manager
   - Replace the NavigationView 
 - Add prefetching by adding a splash screen and navigate the user to the correct page with prefetched data
 - Add an actual good looking spash screen (with animations)
-- Framework separation for other builds (tvOS/macOS) 
 - Offline mode
   - Caching via CoreData probably? SwiftData is iOS 18
 - Details view is buggy when rotating the device on iPad, would have to investigate more
