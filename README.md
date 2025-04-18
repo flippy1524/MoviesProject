@@ -12,7 +12,7 @@ A basic example of a Netflix equivalent project using [TMDB's](https://developer
 - Different environments based on scheme selection
 - Securely kept urls, tokens etc in info.plist
 - Protocol based classes with inheritance
-- Frameworks for separating logic and introduce inheritance, and access control levels
+- Frameworks for separating logic, inheritance, and access control levels
 - Unit tests for base functionalities
 - Natively written networking
 - Using async await for concurrency
