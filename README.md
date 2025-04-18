@@ -45,6 +45,9 @@ Dependencies are injected via Swift Package Manager
 - Add an actual good looking spash screen (with animations)
 - Offline mode
   - Caching via CoreData probably? SwiftData is iOS 18
-- Details view is buggy when rotating the device on iPad, would have to investigate more
 - Add a UIKit equivalent view for code comparison
 - Expand further debugging options in the Settings screen
+
+# Known bug's 
+- The details page on iPad doesnt rotate properly, if you open it in the existing rotation it looks fine, but on rotate while in the page, it breaks up
+- The hardcoded light/dark modes do not directly retroactively reflect on all of the other screens (tabs remain in memory, didnt think of that) 
