@@ -37,6 +37,10 @@ Dependencies are injected via Swift Package Manager
 - [SwiftLint](https://github.com/realm/SwiftLint) 
 
 # Todo's
+- Properly implement the protocol based networking services
+  - Make dependency injection into the view models
+  - Introduce a coordinator for the navigaiton so a proper dependency injection can occur
+  - Rework the classes in to "actors" for better concurrency handling
 - Brind down the iOS 18 requirement by building the UI differently (can be easily achieved to iOS 15) 
   - Would have to introduce different navigation (Router)
   - Replace the Tabbar with older methods of tabs 
@@ -49,5 +53,6 @@ Dependencies are injected via Swift Package Manager
 - Expand further debugging options in the Settings screen
 
 # Known bug's 
+- The fetching of the data on the home screen will eventually stop updating the UI, even though the data is fetched from the backend
 - The details page on iPad doesnt rotate properly, if you open it in the existing rotation it looks fine, but on rotate while in the page, it breaks up
 - The hardcoded light/dark modes do not directly retroactively reflect on all of the other screens (tabs remain in memory, didnt think of that) 
